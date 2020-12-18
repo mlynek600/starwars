@@ -1,43 +1,26 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import {
   Card,
   CardBody,
   CardHeader,
   ListGroup,
   ListGroupItem,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
+  // Pagination,
+  // PaginationItem,
+  // PaginationLink,
 } from 'reactstrap'
 
-type Data =
-  | {
-      count: number
-      next: string
-      previous: null
-      results: { name: string; species: string[] | [] }[]
-    }
-  | undefined
+type CharactersType = {
+  characters?: {
+    name: string
+    films: string[]
+    species: string[] | []
+  }[]
+}
 
-const Characters: React.FC = () => {
-  const [charactersData, setCharactersData] = useState<Data>()
-  const [species, setSpecies] = useState()
-
-  useEffect(() => {
-    fetch('https://swapi.dev/api/people/')
-      .then((response) => response.json())
-      .then((data) => setCharactersData(data))
-    fetch('https://swapi.dev/api/species/')
-      .then((response) => response.json())
-      .then((data) => setSpecies(data))
-  }, [])
-  console.log(species)
-
-  const characterItems = charactersData?.results.map((character) => (
-    <ListGroupItem key={character.name}>
-      {character.name}
-      {/* {species.results} */}
-    </ListGroupItem>
+const Characters: React.FC<CharactersType> = ({ characters }) => {
+  const characterItems = characters?.map((character) => (
+    <ListGroupItem key={character.name}>{character.name}</ListGroupItem>
   ))
 
   return (
