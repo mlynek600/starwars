@@ -18,8 +18,6 @@ export type StarwarsCharacter = {
 }
 
 export type StarwarsSpecies = {
-  count: number
-  next: string
   results: Species[]
 }
 

@@ -4,9 +4,6 @@ import {
   CHARACTERS_FAIL,
   CHARACTERS_LOADING,
   CHARACTERS_SUCCESS,
-  SPECIES_FAIL,
-  SPECIES_LOADING,
-  SPECIES_SUCCESS,
 } from '../actions/starwarsActionTypes'
 
 interface DefaultState {
@@ -16,7 +13,7 @@ interface DefaultState {
 
 const defaultState: DefaultState = { loading: false }
 
-const starwarsReducer = (
+const charactersReducer = (
   state: DefaultState = defaultState,
   action: CharactersDispatchTypes
 ): DefaultState => {
@@ -36,4 +33,4 @@ const starwarsReducer = (
   }
 }
 
-export default starwarsReducer
+export default charactersReducer
