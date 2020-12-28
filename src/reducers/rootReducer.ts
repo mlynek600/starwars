@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import charactersReducer from './chatactersReducer'
+import charactersReducer from './charactersReducer'
 import speciesReducer from './speciesReducer'
 
 const rootReducer = combineReducers({
-  starwars: charactersReducer,
-  speciec: speciesReducer,
+  characters: charactersReducer,
+  species: speciesReducer,
 })
 
 export default rootReducer

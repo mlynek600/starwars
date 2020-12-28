@@ -13,17 +13,20 @@ const App: React.FC = () => {
 
   useEffect(() => {
     dispatch(GetStarwarsCharacters(1))
-    dispatch(GetStarwarsSpecies(1))
-    dispatch(GetStarwarsSpecies(2))
-    dispatch(GetStarwarsSpecies(3))
-    dispatch(GetStarwarsSpecies(4))
+
+    for (let i = 1; i < 5; i++) {
+      dispatch(GetStarwarsSpecies(i))
+    }
   }, [])
 
-  const starwarsState = useSelector((state: Store) => state.starwars)
+  const starwarsState = useSelector((state: Store) => state)
 
   return (
     <div className="App">
-      <Characters characters={starwarsState.characters?.results} />
+      <Characters
+        characters={starwarsState.characters.characters?.results}
+        species={starwarsState.species.species?.results}
+      />
     </div>
   )
 }

@@ -23,7 +23,7 @@ export type StarwarsSpecies = {
 
 export type Film = { name: string; release_date: string; director: string }
 
-export type Species = { name: string }
+export type Species = { name: string; url: string }
 
 export interface CharactersLoading {
   type: typeof CHARACTERS_LOADING
