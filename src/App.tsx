@@ -21,11 +21,17 @@ const App: React.FC = () => {
 
   const starwarsState = useSelector((state: Store) => state)
 
+  const handlePageClick = (page: number) => {
+    dispatch(GetStarwarsCharacters(page))
+  }
+
   return (
     <div className="App">
       <Characters
         characters={starwarsState.characters.characters?.results}
+        charactersCount={starwarsState.characters.characters?.count}
         species={starwarsState.species.species?.results}
+        handlePageClick={handlePageClick}
       />
     </div>
   )

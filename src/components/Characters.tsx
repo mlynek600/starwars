@@ -1,28 +1,39 @@
 import React from 'react'
+
+import { times } from 'lodash'
 import {
   Card,
   CardBody,
   CardHeader,
   ListGroup,
   ListGroupItem,
-  // Pagination,
-  // PaginationItem,
-  // PaginationLink,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
 } from 'reactstrap'
 
-type CharactersType = {
+type CharactersProps = {
   characters?: {
     name: string
     films: string[]
     species: string[] | []
   }[]
+  charactersCount?: number
   species?: {
     name: string
     url: string
   }[]
+
+  handlePageClick: (page: number) => void
 }
 
-const Characters: React.FC<CharactersType> = ({ characters, species }) => {
+const Characters: React.FC<CharactersProps> = ({
+  characters,
+  charactersCount,
+  species,
+
+  handlePageClick,
+}) => {
   const charactersWithSpeciesNames = characters?.map((character) => {
     if (character.species.length === 0) {
       return { ...character, speciesName: null }
@@ -36,20 +47,40 @@ const Characters: React.FC<CharactersType> = ({ characters, species }) => {
   })
 
   const characterItems = charactersWithSpeciesNames?.map((character) => (
-    <ListGroupItem key={character.name}>
-      <h5>{character.name}</h5>
+    <ListGroupItem key={character.name} className="p-2">
+      <h6 className="mb-0">{character.name}</h6>
 
-      <div className="text-secondary">
+      <small className="text-secondary text-small">
         {character.speciesName && character.speciesName}
-      </div>
+      </small>
     </ListGroupItem>
   ))
 
+  const pagesCount = charactersCount && Math.ceil(charactersCount / 10)
+
+  const pagination = (
+    <Pagination className="d-flex justify-content-center mt-2">
+      {pagesCount &&
+        times(pagesCount, (i) => (
+          <PaginationItem>
+            <PaginationLink onClick={() => handlePageClick(i + 1)}>
+              {i + 1}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
+    </Pagination>
+  )
+
   return (
-    <Card>
-      <CardHeader>STAR WARS VIEWER</CardHeader>
-      <CardBody>
+    <Card className="w-50 mt-3">
+      <CardHeader className="text-white bg-secondary">
+        STAR WARS VIEWER
+      </CardHeader>
+
+      <CardBody className="pb-1">
         <ListGroup>{characterItems}</ListGroup>
+
+        {pagination}
       </CardBody>
     </Card>
   )
