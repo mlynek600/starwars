@@ -7,8 +7,12 @@ import {
   SPECIES_FAIL,
   SPECIES_LOADING,
   SPECIES_SUCCESS,
+  FILM_FAIL,
+  FILM_LOADING,
+  FILM_SUCCESS,
   CharactersDispatchTypes,
   SpeciesDispatchTypes,
+  FilmDispatchTypes,
 } from './starwarsActionTypes'
 
 export const GetStarwarsCharacters = (page: number) => async (
@@ -45,6 +49,23 @@ export const GetStarwarsSpecies = (page: number) => async (
   } catch (e) {
     dispatch({
       type: SPECIES_FAIL,
+    })
+  }
+}
+
+export const GetStarwarsFilm = (filmUrl: string) => async (
+  dispatch: Dispatch<FilmDispatchTypes>
+): Promise<void> => {
+  try {
+    dispatch({ type: FILM_LOADING })
+    const res = await axios.get(filmUrl)
+    dispatch({
+      type: FILM_SUCCESS,
+      payload: res.data,
+    })
+  } catch (e) {
+    dispatch({
+      type: FILM_FAIL,
     })
   }
 }

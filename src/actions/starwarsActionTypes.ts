@@ -4,6 +4,9 @@ export const CHARACTERS_SUCCESS = 'CHARACTERS_SUCCESS'
 export const SPECIES_LOADING = 'SPECIES_LOADING'
 export const SPECIES_FAIL = 'SPECIES_FAIL'
 export const SPECIES_SUCCESS = 'SPECIES_SUCCESS'
+export const FILM_LOADING = 'FILM_LOADING'
+export const FILM_FAIL = 'FILM_FAIL'
+export const FILM_SUCCESS = 'FILM_SUCCESS'
 
 export type StarwarsCharacters = {
   count: number
@@ -21,7 +24,12 @@ export type StarwarsSpecies = {
   results: Species[]
 }
 
-export type Film = { name: string; release_date: string; director: string }
+export type Film = {
+  title: string
+  release_date: string
+  director: string
+  url: string
+}
 
 export type Species = { name: string; url: string }
 
@@ -51,6 +59,19 @@ export interface SpeciesSuccess {
   payload: StarwarsSpecies
 }
 
+export interface FilmLoading {
+  type: typeof FILM_LOADING
+}
+
+export interface FilmFail {
+  type: typeof FILM_FAIL
+}
+
+export interface FilmSuccess {
+  type: typeof FILM_SUCCESS
+  payload: Film
+}
+
 export type CharactersDispatchTypes =
   | CharactersLoading
   | CharactersFail
@@ -60,3 +81,5 @@ export type SpeciesDispatchTypes =
   | SpeciesLoading
   | SpeciesFail
   | SpeciesSuccess
+
+export type FilmDispatchTypes = FilmLoading | FilmFail | FilmSuccess
