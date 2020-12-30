@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
+
+import { times } from 'lodash'
 import { useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
-import { times } from 'lodash'
 import {
   Card,
   CardBody,
@@ -39,6 +40,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
   species,
 }) => {
   const dispatch = useDispatch()
+
   const { page = 1 } = useParams<ParamTypes>()
 
   const numberPage = Number(page)
@@ -98,8 +100,6 @@ const CharacterList: React.FC<CharacterListProps> = ({
         times(pagesCount, (i) => (
           <PaginationItem key={i} active={numberPage === i + 1}>
             <PaginationLink
-              // className="btn-secondary"
-              // secondary
               style={{
                 boxShadow: 'none',
                 color: 'black',

@@ -5,7 +5,7 @@ const routes = {
   },
   character: {
     url: '/character/',
-    route: '/character/:id',
+    route: '/character/:name',
   },
 }
 

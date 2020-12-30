@@ -7,9 +7,8 @@ import { GetStarwarsSpecies } from './actions/starwarsActions'
 import './App.css'
 import CharacterList from './components/CharacterList'
 import CharacterFilms from './components/CharacterFilms'
-import { Store } from './Store'
-
 import routes from './routes'
+import { Store } from './Store'
 
 const App: React.FC = () => {
   const dispatch = useDispatch()

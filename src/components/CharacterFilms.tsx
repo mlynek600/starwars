@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { GetStarwarsFilm } from '../actions/starwarsActions'
-import { Store } from '../Store'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import {
   Card,
   CardBody,
@@ -11,6 +9,9 @@ import {
   ListGroup,
   ListGroupItem,
 } from 'reactstrap'
+
+import { GetStarwarsFilm } from '../actions/starwarsActions'
+import { Store } from '../Store'
 
 type LocationType = {
   name: string
@@ -37,7 +38,7 @@ const CharacterFilms: React.FC = () => {
   const movies = characterFilms?.map((film) => (
     <ListGroupItem key={film.title} className="pb-0">
       <p>
-        {film.title} {`[${film.release_date}]`}
+        {film.title} [{film.release_date}]
       </p>
       <p className="small text-muted">Director: {film.director}</p>
     </ListGroupItem>
@@ -60,6 +61,7 @@ const CharacterFilms: React.FC = () => {
                 <span className="arrow left"></span>
               </button>
             </div>
+
             <h4 className="font-weight-bold mt-1">{`${name} movies`}</h4>
           </ListGroupItem>
 

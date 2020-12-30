@@ -4,15 +4,15 @@ import {
   CHARACTERS_FAIL,
   CHARACTERS_LOADING,
   CHARACTERS_SUCCESS,
-  SPECIES_FAIL,
-  SPECIES_LOADING,
-  SPECIES_SUCCESS,
+  CharactersDispatchTypes,
   FILM_FAIL,
   FILM_LOADING,
   FILM_SUCCESS,
-  CharactersDispatchTypes,
-  SpeciesDispatchTypes,
   FilmDispatchTypes,
+  SPECIES_FAIL,
+  SPECIES_LOADING,
+  SPECIES_SUCCESS,
+  SpeciesDispatchTypes,
 } from './starwarsActionTypes'
 
 export const GetStarwarsCharacters = (page: number) => async (
