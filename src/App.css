@@ -23,6 +23,10 @@
     margin-left: 5px
 }
 
+.page-item.active .page-link {
+    background-color: #b2b5b8 !important;
+    border-color:#b2b5b8 !important
+}
 
 @media (min-width: 900px) {
     .main-card {

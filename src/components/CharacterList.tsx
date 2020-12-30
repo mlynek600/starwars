@@ -98,7 +98,12 @@ const CharacterList: React.FC<CharacterListProps> = ({
         times(pagesCount, (i) => (
           <PaginationItem key={i} active={numberPage === i + 1}>
             <PaginationLink
-              style={{ boxShadow: 'none' }}
+              // className="btn-secondary"
+              // secondary
+              style={{
+                boxShadow: 'none',
+                color: 'black',
+              }}
               onClick={() => {
                 history.push(`${i + 1}`)
               }}
