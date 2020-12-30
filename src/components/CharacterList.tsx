@@ -111,7 +111,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
   )
 
   return (
-    <Card className="mt-3" style={{ width: '40%' }}>
+    <Card className="mt-3 main-card">
       <CardHeader className="text-white bg-secondary">
         STAR WARS VIEWER
       </CardHeader>

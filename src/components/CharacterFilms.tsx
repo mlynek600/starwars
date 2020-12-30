@@ -44,21 +44,23 @@ const CharacterFilms: React.FC = () => {
   ))
 
   return (
-    <Card className="mt-3 pb-3" style={{ width: '40%' }}>
+    <Card className="mt-3 pb-3 main-card">
       <CardHeader className="text-white bg-secondary">
         STAR WARS VIEWER
       </CardHeader>
 
       <CardBody className="pb-1">
         <ListGroup>
-          <ListGroupItem className="d-flex">
-            <button
-              onClick={() => history.back()}
-              className="btn btn-light rounded-pill mr-3"
-            >
-              <span className="arrow left"></span>
-            </button>
-            <h4 className="font-weight-bold pt-2">{`${name} movies`}</h4>
+          <ListGroupItem className="d-flex align-items-center">
+            <div>
+              <button
+                onClick={() => history.back()}
+                className="btn btn-light rounded-pill mr-3"
+              >
+                <span className="arrow left"></span>
+              </button>
+            </div>
+            <h4 className="font-weight-bold mt-1">{`${name} movies`}</h4>
           </ListGroupItem>
 
           {movies}
