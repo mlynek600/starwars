@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import { GetStarwarsSpecies } from './actions/starwarsActions'
-import './App.css'
+import './styles/App.css'
 import CharacterList from './components/CharacterList'
 import CharacterFilms from './components/CharacterFilms'
-import routes from './routes'
+import routes from './constants/routes'
 import { Store } from './Store'
 
 const App: React.FC = () => {
