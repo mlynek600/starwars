@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-import { Card, CardBody, CardHeader, ListGroup } from 'reactstrap'
+import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { ListGroup } from 'reactstrap'
 
-import { StarwarsCharacter, Species } from '../actions/starwarsActionTypes'
+import { GetStarwarsCharacters } from '../../actions/starwarsActions'
+import {
+  StarwarsCharacter,
+  Species,
+} from '../../actions/starwarsActionTypes'
 
-import CharacterItem from './CharacterItem'
-import Pagination from './Pagination'
+import Layout from '../Layout'
+import Pagination from '../Pagination'
+
+import CharacterItem from './Item'
+
+type ParamTypes = {
+  page?: string
+  id?: string
+}
 
 type CharacterListProps = {
   characters?: StarwarsCharacter[]
@@ -18,6 +31,16 @@ const CharacterList: React.FC<CharacterListProps> = ({
   charactersCount,
   species,
 }) => {
+  const dispatch = useDispatch()
+
+  const { page = 1 } = useParams<ParamTypes>()
+
+  const numberPage = Number(page)
+
+  useEffect(() => {
+    dispatch(GetStarwarsCharacters(numberPage))
+  }, [page])
+
   const addSpeciesName = (character: StarwarsCharacter) => {
     if (character.species.length === 0) {
       return { ...character, speciesName: undefined }
@@ -39,17 +62,11 @@ const CharacterList: React.FC<CharacterListProps> = ({
   ))
 
   return (
-    <Card className="mt-3 main-card">
-      <CardHeader className="text-white bg-secondary">
-        STAR WARS VIEWER
-      </CardHeader>
+    <Layout>
+      <ListGroup>{characterItems}</ListGroup>
 
-      <CardBody className="pb-1">
-        <ListGroup>{characterItems}</ListGroup>
-
-        <Pagination charactersCount={charactersCount} />
-      </CardBody>
-    </Card>
+      <Pagination charactersCount={charactersCount} page={numberPage} />
+    </Layout>
   )
 }
 

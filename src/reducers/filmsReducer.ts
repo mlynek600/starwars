@@ -14,6 +14,17 @@ interface DefaultState {
 
 const defaultState: DefaultState = { loading: false }
 
+const getFilmsSuccessState = (
+  stateFilms: Film[] | undefined,
+  film: Film
+) => {
+  if (!stateFilms) return [film]
+  else
+    return stateFilms.find((film) => film.title === film.title)
+      ? stateFilms
+      : [...stateFilms, film]
+}
+
 const filmsReducer = (
   state: DefaultState = defaultState,
   action: FilmDispatchTypes
@@ -29,13 +40,7 @@ const filmsReducer = (
       return {
         ...state,
         loading: false,
-        films: state.films
-          ? [...state.films].find(
-              (film) => film.title === action.payload.title
-            )
-            ? [...state.films]
-            : [...state.films, action.payload]
-          : [action.payload],
+        films: getFilmsSuccessState(state.films, action.payload),
       }
 
     default:

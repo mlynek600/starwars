@@ -27,14 +27,14 @@ const speciesReducer = (
       return {
         ...state,
         loading: false,
-        species: state.species
-          ? {
+        species: !state.species
+          ? action.payload
+          : {
               ...state.species,
               results: [
                 ...state.species.results.concat(action.payload.results),
               ],
-            }
-          : action.payload,
+            },
       }
     default:
       return state

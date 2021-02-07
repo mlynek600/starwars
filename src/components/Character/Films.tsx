@@ -2,16 +2,12 @@ import React, { useEffect } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  ListGroup,
-  ListGroupItem,
-} from 'reactstrap'
+import { ListGroup, ListGroupItem } from 'reactstrap'
 
-import { GetStarwarsFilm } from '../actions/starwarsActions'
-import { Store } from '../Store'
+import { GetStarwarsFilm } from '../../actions/starwarsActions'
+import { Store } from '../../Store'
+
+import Layout from '../Layout'
 
 type LocationType = {
   name: string
@@ -25,8 +21,12 @@ const CharacterFilms: React.FC = () => {
 
   const { name, films } = location.state
 
-  useEffect(() => {
+  const fetchAllFilms = () => {
     films.forEach((film) => dispatch(GetStarwarsFilm(film)))
+  }
+
+  useEffect(() => {
+    fetchAllFilms()
   }, [])
 
   const stateFilms = useSelector((state: Store) => state.films.films)
@@ -45,30 +45,24 @@ const CharacterFilms: React.FC = () => {
   ))
 
   return (
-    <Card className="mt-3 pb-3 main-card">
-      <CardHeader className="text-white bg-secondary">
-        STAR WARS VIEWER
-      </CardHeader>
+    <Layout>
+      <ListGroup>
+        <ListGroupItem className="d-flex align-items-center">
+          <div>
+            <button
+              onClick={() => history.back()}
+              className="btn btn-light rounded-pill mr-3"
+            >
+              <span className="arrow left"></span>
+            </button>
+          </div>
 
-      <CardBody className="pb-1">
-        <ListGroup>
-          <ListGroupItem className="d-flex align-items-center">
-            <div>
-              <button
-                onClick={() => history.back()}
-                className="btn btn-light rounded-pill mr-3"
-              >
-                <span className="arrow left"></span>
-              </button>
-            </div>
+          <h4 className="font-weight-bold mt-1">{`${name} movies`}</h4>
+        </ListGroupItem>
 
-            <h4 className="font-weight-bold mt-1">{`${name} movies`}</h4>
-          </ListGroupItem>
-
-          {movies}
-        </ListGroup>
-      </CardBody>
-    </Card>
+        {movies}
+      </ListGroup>
+    </Layout>
   )
 }
 
