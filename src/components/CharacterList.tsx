@@ -35,7 +35,7 @@ const CharacterList: React.FC<CharacterListProps> = ({
   const charactersWithSpeciesNames = characters?.map(addSpeciesName)
 
   const characterItems = charactersWithSpeciesNames?.map((character) => (
-    <CharacterItem character={character} />
+    <CharacterItem key={character.name} character={character} />
   ))
 
   return (
