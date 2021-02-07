@@ -16,13 +16,13 @@ const defaultState: DefaultState = { loading: false }
 
 const getFilmsSuccessState = (
   stateFilms: Film[] | undefined,
-  film: Film
+  newFilm: Film
 ) => {
-  if (!stateFilms) return [film]
+  if (!stateFilms) return [newFilm]
   else
-    return stateFilms.find((film) => film.title === film.title)
+    return stateFilms.find((film) => film.title === newFilm.title)
       ? stateFilms
-      : [...stateFilms, film]
+      : [...stateFilms, newFilm]
 }
 
 const filmsReducer = (
